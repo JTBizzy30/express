@@ -1,11 +1,14 @@
 unreleased
 ==========
 
+  * Add `acceptRanges` option to `res.sendFile`/`res.sendfile`
+  * Add `cacheControl` option to `res.sendFile`/`res.sendfile`
   * Add `options` argument to `req.range`
     - Includes the `combine` option
   * Fix Windows absolute path check using forward slashes
   * Improve error with invalid arguments to `req.get()`
   * Improve performance for `res.json`/`res.jsonp` in most cases
+  * Improve `Range` header handling in `res.sendFile`/`res.sendfile`
   * deps: accepts@~1.3.3
     - Fix including type extensions in parameters in `Accept` parsing
     - Fix parsing `Accept` parameters with quoted equals
@@ -38,6 +41,18 @@ unreleased
     - Add `combine` option to combine overlapping ranges
     - Fix incorrectly returning -1 when there is at least one valid range
     - perf: remove internal function
+  * deps: send@0.14.0
+    - Add `acceptRanges` option
+    - Add `cacheControl` option
+    - Attempt to combine multiple ranges into single range
+    - Correctly inherit from `Stream` class
+    - Fix `Content-Range` header in 416 responses when using `start`/`end` options
+    - Fix `Content-Range` header missing from default 416 responses
+    - Ignore non-byte `Range` headers
+    - deps: http-errors@~1.5.0
+    - deps: range-parser@~1.2.0
+    - deps: statuses@~1.3.0
+    - perf: remove argument reassignment
   * deps: type-is@~1.6.13
     - Fix type error when given invalid type to match against
     - deps: mime-types@~2.1.11
